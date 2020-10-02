@@ -10,17 +10,15 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
    extended: true
 }));
 
 
-app.get("", (req, res) => {
-   res.setHeader('statusCode', 200);
-   res.setHeader("content-type", "text/html");
-   res.send("<h1>Holaaa</h1>");
-});
+app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.get("/api/users", async (req, res) => {
    try {
